@@ -8,12 +8,12 @@ import cv2
 import pickle
 
 
-
-with open('Dumbed_Model/Trained_Model/MAIN/mohamed_other.pk','rb') as f:
+# Get pk File
+with open('Dumbed_Model/Trained_Model/MAIN/omar_Other.pk','rb') as f:
     mypickle = pickle.load(f)
 
 # Load the test image with unknown faces into a numpy array
-test_image = face_recognition.load_image_file('SVC_Testimgs/TeamPhotos/untitled454545.png')
+test_image = face_recognition.load_image_file('SVC_Testimgs/TeamPhotos/313029380_820622142513447_5367526483230096703_n.jpg')
 
 # Find all the faces in the test image using the default HOG-based model
 face_locations = face_recognition.face_locations(test_image)
@@ -27,7 +27,6 @@ for i in range(no):
     test_image_enc = face_recognition.face_encodings(test_image)[i]
     
     propa_name = mypickle.predict_proba([test_image_enc])
-    
     # Getting Model Accuracy
     max_acc = propa_name.max()*100
     if (max_acc) > 90:
@@ -40,7 +39,7 @@ for i in range(no):
         print("The Model Accuracy Is = " , round(max_acc,2) , "%")
 
 # Print Accuracy
-print(propa_name)
+print("propa_name",propa_name)
 
     # Show Result On Screen
 while True:
